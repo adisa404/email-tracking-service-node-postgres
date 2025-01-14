@@ -1,0 +1,20 @@
+{
+  "name": "email-tracking-service-node-postgres",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A simple service for generating tracking urls",
+  "main": "index.js",
+  "scripts": {
+    "dev": "set NODE_ENV=development && tsc && node dist/index.js"
+  },
+  "author": "Adisa Mrvoljak",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.6",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
