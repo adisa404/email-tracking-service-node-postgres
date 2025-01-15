@@ -2,16 +2,17 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const createMapping = async (messageId: string) => {
+export const createTrackingData = async (messageId: string, userAgent: string, ipAddress: string) => {
     try {
-        const mapping = await prisma.trackingMapping.create({
+        const trackingData = await prisma.trackingData.create({
             data: {
                 messageId: messageId,
-                url: 'urltest',
+                userAgent: userAgent,
+                ipAddress: ipAddress,
             },
         });
 
-        return mapping;
+        return trackingData;
     } catch (error) {
         console.error(error);
         throw error;
