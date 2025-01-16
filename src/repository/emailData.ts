@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { error } from 'console';
 
 const prisma = new PrismaClient();
 
@@ -34,6 +35,28 @@ export const createEmailData = async (
                 receiver: receiver,
                 subject: subject,
                 text: text,
+            },
+        });
+
+        return emailData;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    } finally {
+        await prisma.$disconnect();
+    }
+};
+
+export const incrementHits = async (messageId: string) => {
+    try {
+        const emailData = await prisma.emailData.update({
+            where: {
+                messageId: messageId,
+            },
+            data: {
+                hits: {
+                    increment: 1,
+                },
             },
         });
 

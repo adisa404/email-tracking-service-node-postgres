@@ -12,35 +12,35 @@ emailRoutes.post('/sendEmail', async (req: Request, res: Response) => {
     const { messageId, sender, receiver, subject, text } = req.body;
 
     if (!messageId) {
-        res.json({ status: '400', message: 'messageId is required' });
+        res.status(400).json({ message: 'messageId is required' });
         return;
     }
 
     if (!sender) {
-        res.json({ status: '400', message: 'Sender is required' });
+        res.status(400).json({ message: 'Sender is required' });
         return;
     }
 
     if (!receiver) {
-        res.json({ status: '400', message: 'Receiver is required' });
+        res.status(400).json({ message: 'Receiver is required' });
         return;
     }
 
     if (!isValidRFC822MessageId(messageId)) {
-        res.json({ status: '400', message: 'Invalid messageId format' });
+        res.status(400).json({ message: 'Invalid messageId format' });
         return;
     }
 
     try {
         const existing = await getMapping(messageId);
         if (!existing) {
-            res.json({ status: '404', message: 'Tracking url for messageId not found' });
+            res.status(404).json({ message: 'Tracking url for messageId not found' });
             return;
         }
 
         const existingSentEmail = await getEmail(messageId);
         if (existingSentEmail) {
-            res.json({ status: '404', message: 'Email with provided messageId was already sent' });
+            res.status(404).json({ message: 'Email with provided messageId was already sent' });
             return;
         }
 
@@ -49,9 +49,9 @@ emailRoutes.post('/sendEmail', async (req: Request, res: Response) => {
 
         await createEmailData(messageId, sender, receiver, subject, text);
 
-        res.json({ status: '200', message: 'The email has been sent.' });
+        res.status(200).json({ message: 'The email has been sent.' });
     } catch (error) {
-        res.json({ status: '500', message: error });
+        res.status(500).json({ message: error });
     }
 });
 

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "EmailData" ADD COLUMN     "hits" INTEGER NOT NULL DEFAULT 0;

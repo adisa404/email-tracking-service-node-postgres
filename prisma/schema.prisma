@@ -23,7 +23,7 @@ model TrackingData {
   id            Int      @id @default(autoincrement())
   userAgent     String
   ipAddress     String
-  messageId     String   @unique
+  messageId     String  
 }
 
 model EmailData {
@@ -33,4 +33,5 @@ model EmailData {
   receiver      String
   subject       String
   text          String
+  hits          Int      @default(0)
 }
