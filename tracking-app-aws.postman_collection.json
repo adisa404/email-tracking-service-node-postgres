@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "3d3cdd0c-9ccf-4a6e-8f41-e13fb1e20689",
+		"name": "tracking-app-aws",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8729043"
+	},
+	"item": [
+		{
+			"name": "generate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"messageId\": \"<testMessageId9999@test.com>\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://email-tracking.eu-central-1.elasticbeanstalk.com/api/tracking/generateTrackingUrl",
+					"protocol": "http",
+					"host": [
+						"email-tracking",
+						"eu-central-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"api",
+						"tracking",
+						"generateTrackingUrl"
+					],
+					"query": [
+						{
+							"key": "messageId",
+							"value": "testMessage1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"messageId\": \"<testMessageId9999@test.com>\",\n    \"receiver\":\"adisa.mrvoljak@live.com\", \n    \"sender\":\"adisamrvoljak@gmail.com\", \n    \"subject\":\"test subj\", \n    \"text\":\"test text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://email-tracking.eu-central-1.elasticbeanstalk.com/api/email/sendEmail",
+					"protocol": "http",
+					"host": [
+						"email-tracking",
+						"eu-central-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"api",
+						"email",
+						"sendEmail"
+					],
+					"query": [
+						{
+							"key": "messageId",
+							"value": "testMessage1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPixel",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-forwarded-for",
+						"value": "ip address test",
+						"type": "text"
+					},
+					{
+						"key": "user-agent",
+						"value": "user agent test",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://email-tracking.eu-central-1.elasticbeanstalk.com/api/tracking/pixel?messageId=<testMessageId000@test.com>",
+					"protocol": "http",
+					"host": [
+						"email-tracking",
+						"eu-central-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"api",
+						"tracking",
+						"pixel"
+					],
+					"query": [
+						{
+							"key": "messageId",
+							"value": "<testMessageId000@test.com>"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
