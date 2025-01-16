@@ -19,3 +19,20 @@ export const createMapping = async (messageId: string, trackingUrl: string) => {
         await prisma.$disconnect();
     }
 };
+
+export const getMapping = async (messageId: string) => {
+    try {
+        const mapping = await prisma.trackingMapping.findFirst({
+            where: {
+                messageId,
+            },
+        });
+
+        return mapping;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    } finally {
+        await prisma.$disconnect();
+    }
+};

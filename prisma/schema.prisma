@@ -26,3 +26,11 @@ model TrackingData {
   messageId     String   @unique
 }
 
+model EmailData {
+  id            Int      @id @default(autoincrement())
+  messageId     String   @unique
+  sender        String
+  receiver      String
+  subject       String
+  text          String
+}

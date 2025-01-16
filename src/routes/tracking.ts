@@ -1,6 +1,6 @@
 import express, { Request, Response, Router } from 'express';
 import { createMapping } from '../repository/trackingMapping.js';
-import { isValidRFC822MessageId } from 'src/helper.js';
+import { isValidRFC822MessageId, generateTrackingUrl } from '../helper.js';
 import { createTrackingData } from '../repository/trackingData.js';
 
 const HOST = process.env.HOST;
@@ -20,7 +20,7 @@ trackingRoutes.post('/generateTrackingUrl', async (req: Request, res: Response) 
         return;
     }
 
-    const trackingUrl: string = generateTrackingUrl(messageId);
+    const trackingUrl: string = generateTrackingUrl(messageId, HOST);
 
     try {
         await createMapping(messageId, trackingUrl);
@@ -56,7 +56,3 @@ trackingRoutes.get('/pixel', async (req: Request, res: Response) => {
 });
 
 export default trackingRoutes;
-
-export const generateTrackingUrl = (messageId: string): string => {
-    return `${HOST}/pixel?messageId=${messageId}`;
-};
