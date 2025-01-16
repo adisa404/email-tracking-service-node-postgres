@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"messageId\": \"<testMessageId9999@test.com>\"\n}",
+					"raw": "{\n    \"messageId\": \"<testMessageId9991@test.com>\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -52,7 +52,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"messageId\": \"<testMessageId9999@test.com>\",\n    \"receiver\":\"adisa.mrvoljak@live.com\", \n    \"sender\":\"adisamrvoljak@gmail.com\", \n    \"subject\":\"test subj\", \n    \"text\":\"test text\"\n}",
+					"raw": "{\n    \"messageId\": \"<testMessageId9991@test.com>\",\n    \"receiver\":\"adisa.mrvoljak@live.com\", \n    \"sender\":\"adisamrvoljak@gmail.com\", \n    \"subject\":\"test subj\", \n    \"text\":\"test text\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -85,7 +85,7 @@
 			"response": []
 		},
 		{
-			"name": "getPixel",
+			"name": "get pixel",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -101,7 +101,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://email-tracking.eu-central-1.elasticbeanstalk.com/api/tracking/pixel?messageId=<testMessageId000@test.com>",
+					"raw": "http://email-tracking.eu-central-1.elasticbeanstalk.com/api/tracking/pixel?messageId=<testMessageId9991@test.com>",
 					"protocol": "http",
 					"host": [
 						"email-tracking",
@@ -117,7 +117,48 @@
 					"query": [
 						{
 							"key": "messageId",
-							"value": "<testMessageId000@test.com>"
+							"value": "<testMessageId9991@test.com>"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get hits",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"messageId\": \"<testMessageId9991@test.com>\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://email-tracking.eu-central-1.elasticbeanstalk.com/api/tracking/hits?messageId=<testMessageId9999@test.com>",
+					"protocol": "http",
+					"host": [
+						"email-tracking",
+						"eu-central-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"api",
+						"tracking",
+						"hits"
+					],
+					"query": [
+						{
+							"key": "messageId",
+							"value": "<testMessageId9999@test.com>"
 						}
 					]
 				}
